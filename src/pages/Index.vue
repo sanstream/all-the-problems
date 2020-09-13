@@ -10,12 +10,51 @@
         <g
           :transform="`translate(${height/2},${height/2})`"
         >
-          <text
+          <rect
             v-for="problem in enhancedProblems"
             :key="problem.id"
             :x="problem.position.x"
             :y="problem.position.y"
-          >{{problem.name}}</text>
+            :width="problemBox.width"
+            :height="problemBox.height"
+            stroke="brown"
+            stroke-width="1"
+            fill="none"
+          >
+          </rect>
+          <foreignObject
+            v-for="problem in enhancedProblems"
+            :key="problem.id"
+            :x="problem.position.x"
+            :y="problem.position.y"
+            :width="problemBox.width"
+            :height="problemBox.height"
+          >
+            <article class="problem-item">
+              <summary>
+                {{problem.name}}
+                <ul>
+                  <li
+                    v-for="cause in problem.causes"
+                    :key="cause.id"
+                  >
+                    <a :href="`#${cause.target}`">
+                      {{cause.name}}
+                    </a>
+                  </li>
+                </ul>
+                <details>
+                  <p>{{problem.expl}}</p>
+                  <h2>What is being done?</h2>
+                  <p>{{problem.whatIsDone}}</p>
+                  <h2>What else can be done?</h2>
+                  <p>{{problem.whatCanBeDone}}</p>
+                  <h2>What can you do?</h2>
+                  <p>{{problem.whatCanYouDo}}</p>
+                </details>
+              </summary>
+            </article>
+          </foreignObject>
         </g>       
       </svg>
     </main>
@@ -32,7 +71,11 @@ export default {
     return {
       height: 600,
       width: 600,
-
+      problemBox: {
+        width: 150,
+        height: 150,
+        padding: 10,
+      },
     }
   },
 
@@ -58,6 +101,26 @@ export default {
 </script>
 
 <style>
+
+svg {
+  overflow: visible;
+}
+
+.problem-item h2 {
+  margin: 2em 0 1em 0;
+}
+
+.problem-item ul {
+  padding: 0;
+  list-style: none;
+}
+
+.problem-item {
+  padding: 1em;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
 </style>
 
 <page-query>
@@ -66,6 +129,8 @@ query {
     edges {
       node {
         whatIsDone,
+        whatCanYouDo
+        whatCanBeDone
         id
         name
         expl
