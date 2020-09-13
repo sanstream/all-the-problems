@@ -1,0 +1,103 @@
+[
+  {
+    "id": "economic-recession",
+    "name": "Economic recession",
+    "expl": "The Economic recession...",
+    "wikiLink": "https://en.wikipedia.org/wiki/Recession",
+    "whatIsDone": "",
+    "whatCanBeDone": "Invest, invest invest!!",
+    "whatCanYouDo": "",
+    "causes": [
+
+    ]
+  },
+  {
+    "id": "extinction",
+    "name": "Extinction",
+    "expl": "The Extinction...",
+    "wikiLink": "https://en.wikipedia.org/wiki/Recession",
+    "whatIsDone": "",
+    "whatCanBeDone": "",
+    "whatCanYouDo": "",
+    "causes": [
+      {
+        "id": "decline-biodiversity",
+        "name": "Decline of biodiversity",
+        "expl": "Imagine if we had just one type of rice, which would mean that..",
+        "target": "world-hunger"
+      },
+      {
+        "id": "decline-biodiversity-2",
+        "name": "Decline of biodiversity",
+        "expl": "Imagine if we had just one type of rice, which would mean that..",
+        "target": "world-hunger"
+      },
+      {
+        "id": "decline-biodiversity-3",
+        "name": "Decline of biodiversity",
+        "expl": "Imagine if we had just one type of rice, which would mean that..",
+        "target": "energy-crisis"
+      }
+    ]
+  },
+  {
+    "id": "energy-crisis",
+    "name": "The energy crisis",
+    "expl": "The energy crisis...",
+    "wikiLink": "https://en.wikipedia.org/wiki/Recession",
+    "whatIsDone": "",
+    "whatCanBeDone": "",
+    "whatCanYouDo": "",
+    "causes": [
+      {
+        "id": "economic-recession",
+        "name": "economic-recession-2",
+        "expl": "Imagine if we had just one type of rice, which would mean that..",
+        "target": "economic-recession"
+      },
+      {
+        "id": "decline-biodiversity-3",
+        "name": "Decline of biodiversity",
+        "expl": "Imagine if we had just one type of rice, which would mean that..",
+        "target": "world-hunger"
+      }
+    ]
+  },
+  {
+    "id": "global-warming",
+    "name": "Global warming",
+    "expl": "The Global warming...",
+    "wikiLink": "https://en.wikipedia.org/wiki/Recession",
+    "whatIsDone": "",
+    "whatCanBeDone": "",
+    "whatCanYouDo": "",
+    "causes": [
+      {
+        "id": "gw-ec",
+        "name": "Test",
+        "expl": "test text body..",
+        "target": "energy-crisis"
+      }
+    ]
+  },
+  {
+    "id": "world-hunger",
+    "name": "world hunger",
+    "expl": "The world hunger...",
+    "wikiLink": "https://en.wikipedia.org/wiki/Recession",
+    "whatIsDone": "",
+    "whatCanBeDone": "",
+    "whatCanYouDo": "",
+    "causes": []
+  },
+  {
+    "id": "war",
+    "name": "war",
+    "expl": "War is one of our oldest problems",
+    "wikiLink": "https://en.wikipedia.org/wiki/Recession",
+    "whatIsDone": "",
+    "whatCanBeDone": "",
+    "whatCanYouDo": "",
+    "causes": []
+  }
+]
