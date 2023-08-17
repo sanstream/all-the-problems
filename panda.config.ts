@@ -47,6 +47,11 @@ export default defineConfig({
         sizes: {
           base: {value: '8px'},
         },
+        fonts: {
+          montserrat: {
+            value: 'var(--font-montserrat), sans-serif',
+          }
+        }
       },
       semanticTokens: {
         colors: {
@@ -72,8 +77,23 @@ export default defineConfig({
           body: {
             value: '{tokens.sizes.base}',
           }
-        }
+        },
       },
+      extend: {
+        textStyles: {
+          body: {
+            value: {
+              fontFamily: '{fonts.montserrat}',
+              fontWeight: '500',
+              fontSize: '16',
+              lineHeight: '1.4em',
+              letterSpacing: '0',
+              textDecoration: 'None',
+              textTransform: 'None'
+            }
+          }
+        }
+      }
     },
 
     // The output directory for your css system

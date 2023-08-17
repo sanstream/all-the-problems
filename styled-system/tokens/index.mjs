@@ -67,6 +67,10 @@ const tokens = {
     "value": "1536px",
     "variable": "var(--sizes-breakpoint-2xl)"
   },
+  "fonts.montserrat": {
+    "value": "var(--font-montserrat), sans-serif",
+    "variable": "var(--fonts-montserrat)"
+  },
   "breakpoints.sm": {
     "value": "640px",
     "variable": "var(--breakpoints-sm)"

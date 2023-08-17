@@ -1,9 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { css } from '../../styled-system/css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { montserrat } from '@/fonts'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,9 +17,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`
         dark
-        ${inter.className}
+        ${montserrat.variable}
         ${css({
-          backgroundColor: 'page.backgroundColor'
+          backgroundColor: 'page.backgroundColor',
+          textStyle: 'body',
+          color: 'page.textColor'
+
         })}
       `}>{children}</body>
     </html>
