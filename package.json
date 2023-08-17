@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "next dev",
+    "no-telemetry": "next no-telemetry",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -20,6 +22,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@ark-ui/react": "^0.13.1"
+    "@ark-ui/react": "^0.13.1",
+    "@pandacss/dev": "^0.11.0"
   }
 }
