@@ -12,7 +12,68 @@ export default defineConfig({
 
     // Useful for theme customization
     theme: {
-      extend: {}
+      tokens: {
+        colors: {
+          neutral: {
+            100: {
+              value: '#D5CEE3',
+            },
+            200: {
+              value: '#B5ABC9',
+            },
+            300: {
+              value: '#897AA7',
+            },
+            400: {
+              value: '#716192',
+            },
+            500: {
+              value: '#4D4261',
+            },
+            600: {
+              value: '#352E42',
+            },
+            700: {
+              value: '#292433',
+            },
+          },
+          support: {
+            red: { value:'#ED351C', },
+            yellow: { value:'#F1B51A', },
+            green: { value:'#B7EE19', },
+            blue: { value:'#327BED', },
+          },
+        },
+        sizes: {
+          base: {value: '8px'},
+        },
+      },
+      semanticTokens: {
+        colors: {
+          page: {
+            backgroundColor: {
+              value: {
+                _dark: '{colors.neutral.700}',
+                _light: '{colors.neutral.100}',
+              },
+            },
+            textColor: {
+              value: {
+                _dark: '{colors.neutral.100}',
+                _light: '{colors.neutral.700}',
+              },
+            },
+            headingHighlightColor: {
+              value: '{colors.support.yellow}',
+            },
+          },
+        },
+        spacing: {
+          body: {
+            value: '{tokens.sizes.base}',
+          }
+        }
+      },
     },
 
     // The output directory for your css system
