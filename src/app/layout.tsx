@@ -29,7 +29,11 @@ export default function RootLayout({
         ${center()}
       `}>
         <main className={`${vstack({
-          maxWidth: '8xl',
+          // maxWidth: '8xl',
+          width: {
+            smToXl: '100%',
+            xlTo2xl: '8xl',
+          },
           paddingX: '8'
         })}`}>{children}</main>
       </body>

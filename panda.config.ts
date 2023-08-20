@@ -92,6 +92,17 @@ export default defineConfig({
               textTransform: 'None'
             }
           },
+          standardHeading: {
+            value: {
+              fontFamily: '{fonts.montserrat}',
+              fontWeight: '600',
+              fontSize: '20px',
+              lineHeight: '0.9em',
+              letterSpacing: '0',
+              textDecoration: 'None',
+              textTransform: 'uppercase'
+            }
+          },
           heroBody: {
             value: {
               fontFamily: '{fonts.montserrat}',
