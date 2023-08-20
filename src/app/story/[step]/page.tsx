@@ -1,21 +1,41 @@
 import ProblemsVisualization from "@/components/problems-visualisation";
 import worldProblems from "@/data/problems";
 import { css } from "../../../../styled-system/css";
+import { hstack } from "../../../../styled-system/patterns";
+import EmphasizedText from "@/components/highlighted-text";
+import Link from "next/link";
 
 export default function DefaultStory() {
   return (
     <>
       <header className={css({
-          paddingY: '2',
-          borderBottomColor: 'color.support.yellow',
+          paddingY: 'sectionPart',
+          borderBottomColor: 'support.yellow',
           borderBottomWidth: '1px',
-          borderBottomStyle: 'solid'
+          borderBottomStyle: 'solid',
+          width: '100%',
         })}>
-        <h1 className={css({
-          textStyle: 'standardHeading',
-        })}>All the problems in the worlds</h1>
+        <Link href="/">
+          <h1 className={css({
+            textStyle: 'standardHeading',
+          })}>
+            <EmphasizedText>
+            All
+          </EmphasizedText> the&nbsp;
+          <EmphasizedText>
+          problems</EmphasizedText> in the&nbsp;
+          <EmphasizedText>
+          world
+          </EmphasizedText>
+          </h1>
+          </Link>
       </header>
-      <figure>
+      <figure className={`${css({
+          width: '100%',
+        })}
+        ${hstack({
+          gap:'pagePart'
+        })}`}>
         <ProblemsVisualization
           areaSize={{
             height: 340,

@@ -26,15 +26,17 @@ export default function RootLayout({
           height: '100vh',
           overflowY: 'auto',
         })}
-        ${center()}
       `}>
         <main className={`${vstack({
-          // maxWidth: '8xl',
+          marginX: 'auto',
+          paddingY: '8',
           width: {
             smToXl: '100%',
             xlTo2xl: '8xl',
           },
-          paddingX: '8'
+          minHeight: '100vh',
+          paddingX: '8',
+          gap: 'pagePart',
         })}`}>{children}</main>
       </body>
     </html>

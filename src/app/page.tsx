@@ -1,12 +1,15 @@
 import EmphasizedText from "@/components/highlighted-text";
 import { css } from "../../styled-system/css";
 import { center, flex } from "../../styled-system/patterns";
+import Link from "next/link";
+import AtpButton from "@/components/link-button";
+import ButtonLink from "@/components/button-link";
 
 export default function Home() {
   return (
-    <div className={`${flex({
-      direction: 'column',
-      align: 'start',
+    <div className={`${center({
+      flexDirection: 'column',
+      alignItems: 'flex-start',
       justifyContent: 'center',
       height: '100%',
       gap:'16',
@@ -46,6 +49,10 @@ export default function Home() {
       <br/>
       I hope that this can show you how doing something can affect many things, for the better.
       </p>
+
+      <ButtonLink href="/story/0">
+          Go to the visualization
+      </ButtonLink>
     </div>
   )
 }

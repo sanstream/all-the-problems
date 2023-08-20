@@ -425,7 +425,9 @@
   --breakpoints-xl: 1280px;
   --breakpoints-2xl: 1536px;
   --colors-page-heading-highlight-color: #F1B51A;
-  --spacing-body: var(--tokens-sizes-base)
+  --spacing-body: 0.5rem;
+  --spacing-page-part: 2rem;
+  --spacing-section-part: 1rem
 }
 
 .dark {

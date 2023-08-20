@@ -76,8 +76,14 @@ export default defineConfig({
           },
           spacing: {
             body: {
-              value: '{tokens.sizes.base}',
-            }
+              value: '{spacing.2}',
+            },
+            pagePart: {
+              value: '{spacing.8}',
+            },
+            sectionPart: {
+              value: '{spacing.4}'
+            },
           },
         },
         textStyles: {

@@ -1711,6 +1711,14 @@ const tokens = {
     "value": "var(--spacing-body)",
     "variable": "var(--spacing-body)"
   },
+  "spacing.pagePart": {
+    "value": "var(--spacing-page-part)",
+    "variable": "var(--spacing-page-part)"
+  },
+  "spacing.sectionPart": {
+    "value": "var(--spacing-section-part)",
+    "variable": "var(--spacing-section-part)"
+  },
   "spacing.-1": {
     "value": "calc(var(--spacing-1) * -1)",
     "variable": "var(--spacing-1)"
@@ -1846,6 +1854,14 @@ const tokens = {
   "spacing.-body": {
     "value": "var(--spacing-body)",
     "variable": "var(--spacing-body)"
+  },
+  "spacing.-pagePart": {
+    "value": "var(--spacing-page-part)",
+    "variable": "var(--spacing-page-part)"
+  },
+  "spacing.-sectionPart": {
+    "value": "var(--spacing-section-part)",
+    "variable": "var(--spacing-section-part)"
   },
   "colors.colorPalette.50": {
     "value": "var(--colors-color-palette-50)",
