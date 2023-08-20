@@ -1,5 +1,6 @@
 import worldProblems, { WorldProblem } from "@/data/problems"
 import { arc } from "d3-shape"
+import { css } from "../../styled-system/css"
 
 type AreaDimensions = {
   height: number,
@@ -33,7 +34,9 @@ const ProblemsVisualization:FC<React.HTMLAttributes<HTMLElement>> = ({areaSize, 
     {problemsAsArray.map((worldProblem, index) => (
       <path key={worldProblem.id}
         d={computeDimsForArcSection(index)}
-        fill={'yellow'}
+        className={css({
+          fill: 'support.yellow'
+        })}
       >
         <title>{worldProblem.id}</title>
       </path>
