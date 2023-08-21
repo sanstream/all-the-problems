@@ -34,8 +34,9 @@ problemIds.forEach(id => {
 })
 
 const getRandomIndex = randomInt(0, problemIds.length - 1)
+const getSampleSize = randomInt(3, problemIds.length - 1)
 for (const [id, worldProblem] of worldProblems) {
-  for (let i = 0; i < getRandomIndex(); i++) {
+  for (let i = 0; i < getSampleSize(); i++) {
     const randomProblem = worldProblems.get(problemIds[getRandomIndex()])
     if (randomProblem !== undefined) {
       worldProblem.causes.add({
