@@ -1,4 +1,7 @@
-import worldProblems, { WorldProblem } from "@/data/problems"
+import worldProblems, {
+  WorldProblem,
+  WorldProblemEffect,
+} from "@/data/problems"
 import { arc, curveBundle, lineRadial } from "d3-shape"
 import { css } from "../../styled-system/css"
 import { FC } from "react"
@@ -8,13 +11,20 @@ type AreaDimensions = {
   width: number
 }
 
+/** Decorating the WorldProblem type with some utility props
+ * to help with calculations related to the visualization.
+ */
+type DecoratedWorldProblem = {
+  incomingCauses: Set<WorldProblemEffect>
+} & WorldProblem
+
 type ProblemVisualizationProps = {
   areaSize: AreaDimensions
   connectedWorldProblems: Map<string, WorldProblem>
 } & React.HTMLAttributes<HTMLElement>
 
 const fullCircle = Math.PI * 2 // in radians
-const sliceEdgeWidth = 8 * 1
+const sliceEdgeWidth = 8 * 0.5
 const sliceEdgeSpacing = 0.08 // radians
 
 /** Generate a function that can generate path dims data from a set
@@ -42,6 +52,12 @@ const ProblemsVisualization: FC<ProblemVisualizationProps> = ({
     .innerRadius(vizRadius - sliceEdgeWidth)
     .outerRadius(vizRadius)
     .padAngle(sliceEdgeSpacing)
+  const outerRadiusForSubArc = vizRadius - sliceEdgeWidth - sliceEdgeWidth / 2
+  const computeSubArc = arc()
+    .innerRadius(outerRadiusForSubArc - sliceEdgeWidth / 2)
+    .outerRadius(outerRadiusForSubArc)
+    .padAngle(sliceEdgeSpacing)
+
   const computeDimsForArcSection = (index: number) => {
     // @ts-ignore ts validation logic does not fully apply, even though the parameter is correct
     return computeArc({
@@ -49,32 +65,46 @@ const ProblemsVisualization: FC<ProblemVisualizationProps> = ({
       endAngle: ((index + 1) / connectedWorldProblems.size) * fullCircle,
     })
   }
+  const computeDimsForSubArcSection = (index: number, part: number) => {
+    if (part === 1) {
+      // @ts-ignore ts validation logic does not fully apply, even though the parameter is correct
+      return computeSubArc({
+        startAngle: (index / connectedWorldProblems.size) * fullCircle,
+        endAngle: ((index + 0.55) / connectedWorldProblems.size) * fullCircle,
+      })
+    }
+    // @ts-ignore ts validation logic does not fully apply, even though the parameter is correct
+    return computeSubArc({
+      startAngle: ((index + 0.45) / connectedWorldProblems.size) * fullCircle,
+      endAngle: ((index + 1) / connectedWorldProblems.size) * fullCircle,
+    })
+  }
 
-  const computeDimsForLine = (index: number, otherIndex: number) => {
+  const computeDimsForLine = (sourceIndex: number, targetIndex: number) => {
     const alignmentCorrection = 0.5
     const lastIndex = connectedWorldProblems.size - 1
-    let indexMean = (otherIndex + index) / 2
+    let indexDiff = (targetIndex + sourceIndex) / 2
     if (
-      (index === 0 && otherIndex === lastIndex) ||
-      (index === lastIndex && otherIndex === 0)
+      (sourceIndex === 0 && targetIndex === lastIndex) ||
+      (sourceIndex === lastIndex && targetIndex === 0)
     ) {
-      indexMean = -0.5
+      indexDiff = -0.5
     }
 
     return computeLine([
       [
-        ((index + alignmentCorrection) / connectedWorldProblems.size) *
+        ((sourceIndex + alignmentCorrection) / connectedWorldProblems.size) *
           fullCircle,
         innerRadiusWithOffset,
       ],
       // define a coordinate to force a inward curve:
       [
-        ((indexMean + alignmentCorrection) / connectedWorldProblems.size) *
+        ((indexDiff + alignmentCorrection) / connectedWorldProblems.size) *
           fullCircle,
         innerRadiusWithOffset / 4,
       ],
       [
-        ((otherIndex + alignmentCorrection) / connectedWorldProblems.size) *
+        ((targetIndex + alignmentCorrection) / connectedWorldProblems.size) *
           fullCircle,
         innerRadiusWithOffset,
       ],
@@ -98,8 +128,22 @@ const ProblemsVisualization: FC<ProblemVisualizationProps> = ({
           >
             <title>{worldProblem.id}</title>
           </path>
+          <path
+            key={worldProblem.id}
+            d={computeDimsForSubArcSection(index, 1) || undefined}
+            className={css({
+              fill: "support.red",
+            })}
+          />
+          <path
+            key={worldProblem.id}
+            d={computeDimsForSubArcSection(index, 2) || undefined}
+            className={css({
+              fill: "support.blue",
+            })}
+          />
           <g key={`${worldProblem.id}-connectors`}>
-            {Array.from(worldProblem.causes).map(cause => (
+            {Array.from(worldProblem.causes).map((cause, causeIndex) => (
               <path
                 key={cause.id}
                 className={css({
@@ -112,8 +156,8 @@ const ProblemsVisualization: FC<ProblemVisualizationProps> = ({
                   computeDimsForLine(
                     index,
                     problemsAsArray.findIndex(
-                      problem => problem.id === cause.affects.id,
-                    ),
+                      problem => problem.id === cause.affects.id
+                    )
                   ) || undefined
                 }
               />
