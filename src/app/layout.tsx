@@ -1,12 +1,13 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { css } from '../../styled-system/css'
-import { montserrat } from '@/fonts'
-import { center, container, vstack } from '../../styled-system/patterns'
+import "./globals.css"
+import type { Metadata } from "next"
+import { css } from "../../styled-system/css"
+import { montserrat } from "@/fonts"
+import { center, container, vstack } from "../../styled-system/patterns"
 
 export const metadata: Metadata = {
-  title: 'All the problems - by Studio Sanstream',
-  description: 'A visualisation to help you understand how the worlds largest problems affect and influence each other.',
+  title: "All the problems - by Studio Sanstream",
+  description:
+    "A visualisation to help you understand how the worlds largest problems affect and influence each other.",
 }
 
 export default function RootLayout({
@@ -16,28 +17,34 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`
+      <body
+        className={`
         dark
         ${montserrat.variable}
         ${css({
-          backgroundColor: 'page.backgroundColor',
-          textStyle: 'body',
-          color: 'page.textColor',
-          height: '100vh',
-          overflowY: 'auto',
+          backgroundColor: "page.backgroundColor",
+          textStyle: "body",
+          color: "page.textColor",
+          height: "100vh",
+          overflowY: "auto",
         })}
-      `}>
-        <main className={`${vstack({
-          marginX: 'auto',
-          paddingY: '8',
-          width: {
-            smToXl: '100%',
-            xlTo2xl: '8xl',
-          },
-          minHeight: '100vh',
-          paddingX: '8',
-          gap: 'pagePart',
-        })}`}>{children}</main>
+      `}
+      >
+        <main
+          className={`${vstack({
+            marginX: "auto",
+            paddingY: "8",
+            width: {
+              smToXl: "100%",
+              xlTo2xl: "8xl",
+            },
+            minHeight: "100vh",
+            paddingX: "8",
+            gap: "pagePart",
+          })}`}
+        >
+          {children}
+        </main>
       </body>
     </html>
   )
